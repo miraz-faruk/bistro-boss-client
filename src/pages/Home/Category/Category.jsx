@@ -37,13 +37,13 @@ const Category = () => {
                     clickable: true,
                 }}
                 modules={[Pagination]}
-                className="mySwiper mb-16"
+                className="mySwiper mb-20"
             >
 
                 {
                     categories.map((item, index) =>
                         <SwiperSlide key={index} className='relative pb-12'>
-                            <div className='h-[500px] w-full overflow-hidden rounded-lg relative'>
+                            <div className='h-[500px] w-full overflow-hidden relative'>
                                 <img src={item.image} alt={item.name} className='w-full h-full object-cover' />
                             </div>
                             <h3 className='absolute -mt-20 left-0 right-0 text-2xl text-center text-white font-bold uppercase drop-shadow-2xl'>{item.name}</h3>
