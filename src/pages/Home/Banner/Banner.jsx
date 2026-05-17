@@ -20,6 +20,7 @@ const Banner = () => {
             bottom thumbnails
             className="text-center"
         >
+            
             {images.map((img, index) => (
                 <div key={index} className="relative h-[80vh] md:h-screen">
                     {/* The Background Image */}

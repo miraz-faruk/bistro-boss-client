@@ -26,7 +26,7 @@ const Category = () => {
         <section>
             <SectionTitle
                 subHeading={'---From 11"00am to 10:00pm---'}
-                heading={'ORDER ONLINE'}
+                heading={'order online'}
             ></SectionTitle>
 
             <Swiper
