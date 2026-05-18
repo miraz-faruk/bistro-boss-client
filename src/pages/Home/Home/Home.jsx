@@ -1,8 +1,8 @@
 import FeatureBanner from "../../Shared/FeatureBanner/FeatureBanner";
 import Banner from "../Banner/Banner";
 import Category from "../Category/Category";
+import ChefRecommends from "../ChefRecommends/ChefRecommends";
 import PopularMenu from "../PopularMenu/PopularMenu";
-
 
 const Home = () => {
     return (
@@ -16,6 +16,7 @@ const Home = () => {
                     description={'Experience the best dining experience at Bistro Boss! Our restaurant offers a delectable menu crafted with the freshest ingredients, served in a cozy and inviting atmosphere. Whether you are craving savory dishes or sweet treats, Bistro Boss has something to satisfy every palate. Join us for an unforgettable culinary journey that will leave you coming back for more!'}
                 ></FeatureBanner>
                 <PopularMenu></PopularMenu>
+                <ChefRecommends></ChefRecommends>
             </div>
         </div>
     );

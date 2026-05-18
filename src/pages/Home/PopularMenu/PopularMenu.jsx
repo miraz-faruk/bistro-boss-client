@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import MenuItem from "../../Shared/MenuItem/MenuItem";
 
-
 const PopularMenu = () => {
 
     //Loading data from public folder
@@ -15,7 +14,8 @@ const PopularMenu = () => {
                 const popularItems = data.filter(item => item.category === 'popular');
                 setMenu(popularItems);
             })
-    }, [])
+    }, []);
+
     return (
         <section>
             <SectionTitle

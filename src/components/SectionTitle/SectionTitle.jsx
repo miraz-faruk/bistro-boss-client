@@ -1,4 +1,3 @@
-
 const SectionTitle = ({ heading, subHeading }) => {
     return (
         <div className="mb-12 text-center w-1/3 mx-auto">
