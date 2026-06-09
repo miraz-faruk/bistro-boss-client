@@ -4,6 +4,7 @@ import Category from "../Category/Category";
 import ChefRecommends from "../ChefRecommends/ChefRecommends";
 import Featured from "../Featured/Featured";
 import PopularMenu from "../PopularMenu/PopularMenu";
+import Testimonials from "../Testimonials/Testimonials";
 
 const Home = () => {
     return (
@@ -20,6 +21,9 @@ const Home = () => {
                 <ChefRecommends></ChefRecommends>
             </div>
             <Featured></Featured>
+            <div className="w-4/5 mx-auto">
+                <Testimonials></Testimonials>
+            </div>
         </div>
     );
 };
