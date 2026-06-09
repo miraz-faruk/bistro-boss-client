@@ -2,13 +2,14 @@ import FeatureBanner from "../../Shared/FeatureBanner/FeatureBanner";
 import Banner from "../Banner/Banner";
 import Category from "../Category/Category";
 import ChefRecommends from "../ChefRecommends/ChefRecommends";
+import Featured from "../Featured/Featured";
 import PopularMenu from "../PopularMenu/PopularMenu";
 
 const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            
+
             <div className="w-4/5 mx-auto">
                 <Category></Category>
                 <FeatureBanner
@@ -18,6 +19,7 @@ const Home = () => {
                 <PopularMenu></PopularMenu>
                 <ChefRecommends></ChefRecommends>
             </div>
+            <Featured></Featured>
         </div>
     );
 };

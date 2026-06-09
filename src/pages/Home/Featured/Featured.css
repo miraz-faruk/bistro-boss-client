@@ -1,0 +1,19 @@
+.featured-item {
+    position: relative;
+    background-image: url('../../../assets/home/featured.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.featured-item::before {
+    content: '';
+    inset: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+.featured-item>* {
+    position: relative;
+    z-index: 1;
+}
