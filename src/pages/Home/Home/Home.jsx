@@ -1,3 +1,4 @@
+import PageTitle from "../../../components/PageTitle/PageTitle";
 import FeatureBanner from "../../Shared/FeatureBanner/FeatureBanner";
 import Banner from "../Banner/Banner";
 import Category from "../Category/Category";
@@ -9,8 +10,8 @@ import Testimonials from "../Testimonials/Testimonials";
 const Home = () => {
     return (
         <div>
+            <PageTitle title="Home" />
             <Banner></Banner>
-
             <div className="w-4/5 mx-auto">
                 <Category></Category>
                 <FeatureBanner
