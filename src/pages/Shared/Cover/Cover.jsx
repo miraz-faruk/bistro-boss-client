@@ -7,6 +7,7 @@ const Cover = ({ img, title, desc }) => {
             bgImage={img}
             bgImageAlt="the dog"
             strength={-200}
+            className="mb-32"
         >
             <div
                 className="hero h-[700px] bg-fixed"
