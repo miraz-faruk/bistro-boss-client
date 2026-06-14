@@ -32,15 +32,15 @@ const Menu = () => {
             {/* Offered section */}
             <SectionTitle
             subHeading="---don't miss---" heading="today's offer" />
-            <MenuCategory items={offered}></MenuCategory>
+            <MenuCategory items={offered} title="offered"></MenuCategory>
 
             {/* Dessert section */}
             <Cover
                 img={dessertImg}
-                title="desserts"
+                title="dessert"
                 desc="Indulge in our irresistible dessert menu, featuring a delectable selection of sweet treats that will satisfy your cravings and leave you wanting more. From rich chocolate delights to fruity sensations, our desserts are crafted with love and the finest ingredients to provide a perfect ending to your dining experience."
             ></Cover>
-            <MenuCategory items={dessert}></MenuCategory>
+            <MenuCategory items={dessert} title="dessert"></MenuCategory>
 
             {/* Pizza section */}
             <Cover
@@ -48,7 +48,7 @@ const Menu = () => {
                 title="pizzas"
                 desc="Indulge in our irresistible pizza menu, featuring a delectable selection of savory pies that will satisfy your cravings and leave you wanting more. From classic margherita to gourmet creations, our pizzas are crafted with love and the finest ingredients to provide a perfect ending to your dining experience."
             ></Cover>
-            <MenuCategory items={pizza}></MenuCategory>
+            <MenuCategory items={pizza} title="pizza"></MenuCategory>
 
             {/* Salad section */}
             <Cover
@@ -56,7 +56,7 @@ const Menu = () => {
                 title="salads"
                 desc="Refresh your palate with our vibrant salad menu, featuring a delightful selection of fresh, crisp vegetables and wholesome ingredients. From classic Caesar to innovative creations, our salads are crafted with love and the finest ingredients to provide a perfect ending to your dining experience."
             ></Cover>
-            <MenuCategory items={salad}></MenuCategory>
+            <MenuCategory items={salad} title="salad"></MenuCategory>
 
             {/* Soup section */}
             <Cover
@@ -64,7 +64,7 @@ const Menu = () => {
                 title="soups"
                 desc="Warm your heart with our comforting soup menu, featuring a delightful selection of hearty and flavorful broths. From classic tomato to innovative creations, our soups are crafted with love and the finest ingredients to provide a perfect ending to your dining experience."
             ></Cover>
-            <MenuCategory items={soup}></MenuCategory>
+            <MenuCategory items={soup} title="soup"></MenuCategory>
         </div>
     );
 };
