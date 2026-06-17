@@ -1,22 +1,37 @@
 import loginPageBgImg from '../../assets/others/authentication.png'
 import PageTitle from '../../components/PageTitle/PageTitle';
 import loginImg from '../../assets/others/authentication2.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-
-    const { createUser } = useContext(AuthContext);
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         console.log(data);
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser)
+                console.log(loggedUser);
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        console.log('User profile info updated')
+                        reset();
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Profile created successfully",
+                            icon: "success",
+                            confirmButtonColor: "#d1a054"
+                        }).then(() => {
+                            navigate('/');
+                        });
+                    })
+                    .catch(error => console.log(error))
             })
     }
 
@@ -39,6 +54,10 @@ const SignUp = () => {
                         <label className="label text-lg font-bold text-[#444]">Name</label>
                         <input type="text" {...register("name", { required: true })} name='name' className="input w-full" placeholder="Name" />
                         {errors.name && <span className='text-red-600'>Name field is required</span>}
+
+                        <label className="label text-lg font-bold text-[#444]">Photo URL</label>
+                        <input type="text" {...register("photoURL", { required: true })} className="input w-full" placeholder="Photo URL" />
+                        {errors.photoURL && <span className='text-red-600'>Photo URL field is required</span>}
 
                         <label className="label text-lg font-bold text-[#444]">Email</label>
                         <input type="email" {...register("email", { required: true })} name='email' className="input w-full" placeholder="Email" />
