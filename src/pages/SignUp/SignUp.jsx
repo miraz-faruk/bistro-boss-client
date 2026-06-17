@@ -3,10 +3,22 @@ import PageTitle from '../../components/PageTitle/PageTitle';
 import loginImg from '../../assets/others/authentication2.png'
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = (data) => console.log(data);
+
+    const { createUser } = useContext(AuthContext);
+
+    const onSubmit = (data) => {
+        console.log(data);
+        createUser(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+            })
+    }
 
     return (
         <div className="hero min-h-screen"
@@ -29,11 +41,11 @@ const SignUp = () => {
                         {errors.name && <span className='text-red-600'>Name field is required</span>}
 
                         <label className="label text-lg font-bold text-[#444]">Email</label>
-                        <input type="email" {...register("email", {required: true})} name='email' className="input w-full" placeholder="Email" />
+                        <input type="email" {...register("email", { required: true })} name='email' className="input w-full" placeholder="Email" />
                         {errors.email && <span className='text-red-600'>Email field is required</span>}
 
                         <label className="label text-lg font-bold text-[#444]">Password</label>
-                        <input type="password" {...register("password", {required: true, minLength: 6})} name='password' className="input w-full" placeholder="Password" />
+                        <input type="password" {...register("password", { required: true, minLength: 6 })} name='password' className="input w-full" placeholder="Password" />
                         {errors.password && <span className='text-red-600'>Password field is required and length have to be more than 6 character</span>}
 
                         <input className="btn btn-neutral mt-4 w-full bg-[#d1a054b3] border-0 text-white" type="submit" value="Sign Up" />
