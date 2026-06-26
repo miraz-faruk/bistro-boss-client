@@ -1,27 +1,29 @@
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ item }) => {
-    const { name, image, recipe, price, _id } = item;
+    const { name, image, recipe, price, _id, category } = item;
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure = useAxiosSecure();
+    const [, refetch] = useCart();
 
-    const handleAddToCart = (food) => {
+    const handleAddToCart = () => {
         if (user && user.email) {
             // send cart item to the database 
-            console.log(user.email, food);
             const cartItem = {
                 menuId: _id,
                 email: user.email,
                 name,
                 image,
-                price
+                price,
+                category
             }
-            axios.post('http://localhost:3000/carts', cartItem)
+            axiosSecure.post('/carts', cartItem)
                 .then(res => {
                     console.log(res.data)
                     if (res.data.insertedId) {
@@ -32,6 +34,8 @@ const FoodCard = ({ item }) => {
                             showConfirmButton: false,
                             timer: 1500
                         });
+                        // refetch cart to update the cart item count
+                        refetch();
                     }
                 })
         }
@@ -63,9 +67,7 @@ const FoodCard = ({ item }) => {
                 <h2 className="text-2xl font-medium">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions justify-center">
-                    <button onClick={() =>
-                        handleAddToCart(item)
-                    } className="btn uppercase text-xl font-medium text-[#bb8506] hover:text-black border-b-2 border-b-[#bb8506]">add to cart</button>
+                    <button onClick={handleAddToCart} className="btn uppercase text-xl font-medium text-[#bb8506] hover:text-black border-b-2 border-b-[#bb8506]">add to cart</button>
                 </div>
             </div>
         </div>
