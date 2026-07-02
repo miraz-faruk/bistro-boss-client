@@ -6,30 +6,40 @@ import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const SignUp = () => {
+    const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        console.log(data);
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('User profile info updated')
-                        reset();
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Profile created successfully",
-                            icon: "success",
-                            confirmButtonColor: "#d1a054"
-                        }).then(() => {
-                            navigate('/');
-                        });
+                        // create user entry in the database
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        title: "Success!",
+                                        text: "Profile created successfully",
+                                        icon: "success",
+                                        confirmButtonColor: "#d1a054"
+                                    });
+                                    navigate('/');
+                                }
+                            })
                     })
                     .catch(error => console.log(error))
             })
@@ -68,6 +78,8 @@ const SignUp = () => {
                         {errors.password && <span className='text-red-600'>Password field is required and length have to be more than 6 character</span>}
 
                         <input className="btn btn-neutral mt-4 w-full bg-[#d1a054b3] border-0 text-white" type="submit" value="Sign Up" />
+
+                        <SocialLogin></SocialLogin>
                     </form>
                     <p><small>Already have an account? <Link to="/login" className='text-blue-700'>Please login</Link></small></p>
                 </div>

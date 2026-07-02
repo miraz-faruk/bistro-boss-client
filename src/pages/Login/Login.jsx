@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
@@ -85,6 +86,7 @@ const Login = () => {
                         {/* <button className="btn btn-outline btn-xs mt-2">Validate</button> */}
 
                         <input className="btn btn-neutral mt-4 w-full bg-[#d1a054b3] border-0 text-white" type="submit" value="Login" />
+                        <SocialLogin></SocialLogin>
                     </form>
                     <p><small>New here? <Link to="/signup" className='text-blue-600'>Create a new account</Link></small></p>
                 </div>
