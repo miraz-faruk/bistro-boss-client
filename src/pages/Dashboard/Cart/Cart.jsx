@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useCart from "../../../hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const Cart = () => {
     const [cart, refetch] = useCart();
@@ -37,7 +38,11 @@ const Cart = () => {
     }
 
     return (
-        <div className="bg-white p-10 px-20">
+        <div className="bg-white p-10">
+            <SectionTitle
+                subHeading="---My Cart---" heading="Wanna Add More?">
+            </SectionTitle>
+
             <div className="flex justify-evenly items-center mb-6">
                 <h2 className="uppercase text-lg font-bold">total order: {cart.length} </h2>
                 <h2 className="uppercase text-lg font-bold">total price: ${totalPrice}</h2>
@@ -83,10 +88,8 @@ const Cart = () => {
                         }
 
                     </tbody>
-
                 </table>
             </div>
-
         </div>
     );
 };
