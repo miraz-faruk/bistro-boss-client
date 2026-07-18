@@ -3,7 +3,6 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { FaUtensils } from "react-icons/fa";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { data } from "autoprefixer";
 import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_image_hosting_key;
