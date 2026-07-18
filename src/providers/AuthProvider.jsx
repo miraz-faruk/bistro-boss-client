@@ -46,15 +46,19 @@ const AuthProvider = ({ children }) => {
                 axiosPublic.post('/jwt', userInfo)
                     .then(res => {
                         if (res.data.token) {
-                            localStorage.setItem('access-token', res.data.token)
+                            localStorage.setItem('access-token', res.data.token);
+                            setLoading(false);
                         }
+                    })
+                    .catch(err => {
+                        console.error("JWT Token generation failed:", err);
+                        setLoading(false);
                     })
             }
             else {
                 localStorage.removeItem('access-token')
-
+                setLoading(false);
             }
-            setLoading(false);
         });
         return () => {
             return unsubscribe();

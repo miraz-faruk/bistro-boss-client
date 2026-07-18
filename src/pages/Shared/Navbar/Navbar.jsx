@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { MdShoppingCart } from "react-icons/md";
 import useCart from "../../../hooks/useCart";
@@ -7,6 +7,7 @@ import useCart from "../../../hooks/useCart";
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [cart] = useCart();
+    const location = useLocation()
 
     const handleLogOut = () => {
         logOut()
@@ -19,17 +20,19 @@ const Navbar = () => {
         <li><Link to="/menu">OUR MENU</Link></li>
         <li><Link to="/order/salad">ORDER FOOD</Link></li>
         <li><Link to="/dashboard/cart">
-            <button className="btn">
-                <MdShoppingCart /> <div className="badge badge-sm badge-secondary">+{cart.length}</div>
+            <button className="btn-ghost flex items-center gap-2">
+                <MdShoppingCart className="text-xl" /> 
+                <div className="badge badge-sm badge-secondary font-semibold">+{cart.length}</div>
             </button>
         </Link></li>
         {
-            user ? <>
-                {/* <span>{user?.displayName}</span> */}
-                <button onClick={handleLogOut} className="btn btn-ghost">Logout</button>
-            </> : <>
-                <li><Link to="/login">Login</Link></li>
-            </>
+            user ? (
+                <>
+                    <li><button onClick={handleLogOut} className="btn btn-ghost">Logout</button></li>
+                </>
+            ) : (
+                <li><Link to="/login" state={{ from: location }}>Login</Link></li>
+            )
         }
         <li><Link to="/secret">Secret</Link></li>
     </>
@@ -54,7 +57,14 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {/* Dynamically swap the action panel based on authenticated profile context */}
+                {user ? (
+                    <div className="flex items-center gap-3 bg-gray-800 bg-opacity-40 py-1 px-3 rounded-full border border-gray-700">
+                        <span className="text-sm font-semibold text-yellow-300">{user?.displayName || "Admin User"}</span>
+                    </div>
+                ) : (
+                    <Link to="/login" className="btn btn-sm btn-outline text-white hover:bg-white hover:text-black">Get Started</Link>
+                )}
             </div>
         </div>
     );

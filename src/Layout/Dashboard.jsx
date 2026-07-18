@@ -1,8 +1,8 @@
 import { MdEditCalendar, MdHome, MdList, MdReviews, MdSearch, MdShoppingCart } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
-import useCart from "../../hooks/useCart";
+import useCart from "../hooks/useCart";
 import { FaCalendar, FaList, FaUsers, FaUtensils } from "react-icons/fa";
-import useAdmin from "../../hooks/useAdmin";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
     const [cart] = useCart();
@@ -40,7 +40,7 @@ const Dashboard = () => {
                         </>
                             :
                             <>
-                                <li><NavLink to="/dashboard/userHome">
+                                <li><NavLink to="/">
                                     <MdHome></MdHome>
                                     USER HOME</NavLink>
                                 </li>

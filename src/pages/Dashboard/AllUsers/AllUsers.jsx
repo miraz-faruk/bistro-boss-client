@@ -9,6 +9,8 @@ const AllUsers = () => {
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
+        // Only run if the token exists in local storage
+        enabled: !!localStorage.getItem('access-token'),
         queryFn: async () => {
             const res = await axiosSecure.get('/users');
             return res.data;

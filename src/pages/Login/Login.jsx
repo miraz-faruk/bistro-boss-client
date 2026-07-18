@@ -19,7 +19,7 @@ const Login = () => {
 
     useEffect(() => {
         loadCaptchaEnginge(6);
-    })
+    }, [])
 
     const handleLogin = event => {
         event.preventDefault()
@@ -85,7 +85,12 @@ const Login = () => {
                         <input onBlur={handleValidateCaptcha} type="text" name='captcha' className="input w-full" placeholder="Type the captcha above" />
                         {/* <button className="btn btn-outline btn-xs mt-2">Validate</button> */}
 
-                        <input className="btn btn-neutral mt-4 w-full bg-[#d1a054b3] border-0 text-white" type="submit" value="Login" />
+                        <input
+                            disabled={disabled}
+                            className={`btn btn-neutral mt-4 w-full border-0 text-white ${disabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#d1a054b3] hover:bg-[#b0823e]'}`}
+                            type="submit"
+                            value="Login"
+                        />
                         <SocialLogin></SocialLogin>
                     </form>
                     <p><small>New here? <Link to="/signup" className='text-blue-600'>Create a new account</Link></small></p>
