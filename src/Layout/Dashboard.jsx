@@ -1,4 +1,4 @@
-import { MdEditCalendar, MdHome, MdList, MdReviews, MdSearch, MdShoppingCart } from "react-icons/md";
+import { MdEditCalendar, MdHome, MdList, MdMoney, MdReviews, MdSearch, MdShoppingCart } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 import { FaCalendar, FaList, FaUsers, FaUtensils } from "react-icons/fa";
@@ -59,6 +59,10 @@ const Dashboard = () => {
                                 <li><NavLink to="/dashboard/cart">
                                     <MdShoppingCart></MdShoppingCart>
                                     MY CART ({cart.length})</NavLink>
+                                </li>
+                                <li><NavLink to="/dashboard/paymentHistory">
+                                    <MdMoney></MdMoney>
+                                    PAYMENT HISTORY</NavLink>
                                 </li>
                             </>
                     }
