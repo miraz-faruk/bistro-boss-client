@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 // 1. Create the instance
 export const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://bistro-boss-server-black-ten.vercel.app'
 });
 
 const useAxiosSecure = () => {

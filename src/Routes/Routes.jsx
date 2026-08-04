@@ -18,6 +18,8 @@ import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
 import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import UserHome from "../pages/Dashboard/UserHome/UserHome";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +56,11 @@ export const router = createBrowserRouter([
     path: "dashboard",
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
-      // General users 
+      // General users
+      {
+        path: "userHome",
+        element: <UserHome></UserHome>
+      },
       {
         path: "cart",
         element: <Cart></Cart>
@@ -69,6 +75,10 @@ export const router = createBrowserRouter([
       },
       // admin route
       {
+        path: "adminHome",
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+      },
+      {
         path: "addItems",
         element: <AdminRoute><AddItems></AddItems></AdminRoute>
       },
@@ -79,7 +89,7 @@ export const router = createBrowserRouter([
       {
         path: "updateItem/:id",
         element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
-        loader: ({ params }) => fetch(`http://localhost:3000/menu/${params.id}`)
+        loader: ({ params }) => fetch(`https://bistro-boss-server-black-ten.vercel.app/menu/${params.id}`)
       },
       {
         path: "allUsers",

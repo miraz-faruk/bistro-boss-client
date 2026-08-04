@@ -3,9 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { MdShoppingCart } from "react-icons/md";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [isAdmin] = useAdmin();
     const [cart] = useCart();
     const location = useLocation()
 
@@ -21,7 +23,7 @@ const Navbar = () => {
         <li><Link to="/order/salad">ORDER FOOD</Link></li>
         <li><Link to="/dashboard/cart">
             <button className="btn-ghost flex items-center gap-2">
-                <MdShoppingCart className="text-xl" /> 
+                <MdShoppingCart className="text-xl" />
                 <div className="badge badge-sm badge-secondary font-semibold">+{cart.length}</div>
             </button>
         </Link></li>
@@ -34,7 +36,13 @@ const Navbar = () => {
                 <li><Link to="/login" state={{ from: location }}>Login</Link></li>
             )
         }
-        <li><Link to="/secret">Secret</Link></li>
+        {
+            user && isAdmin && <li><Link to="/dashboard/adminHome">Admin Home</Link></li>
+        }
+        {
+            user && !isAdmin && <li><Link to="/dashboard/userHome">User Home</Link></li>
+        }
+
     </>
     return (
         <div className="navbar bg-black shadow-sm fixed top-0 left-0 z-40 bg-opacity-30 text-white backdrop-blur-sm">
